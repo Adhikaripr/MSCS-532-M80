@@ -1,12 +1,13 @@
 import sys
 import os
 
+# Add parent directory to path for data access
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-from src.user import UserStore
-from src.product import ProductStore
-from src.recommender import RecommenderSystem
-from src.csv_loader import CSVLoader
+from user import UserStore
+from product import ProductStore
+from recommender import RecommenderSystem
+from csv_loader import CSVLoader
 
 
 def main():

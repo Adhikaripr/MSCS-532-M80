@@ -1,8 +1,8 @@
 import heapq
 from collections import defaultdict
 from typing import List, Dict, Any, Set
-from src.user import UserStore
-from src.product import ProductStore
+from user import UserStore
+from product import ProductStore
 
 
 class RecommenderSystem:

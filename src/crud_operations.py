@@ -6,12 +6,10 @@ import time
 from datetime import datetime
 from typing import Dict, List, Any, Optional
 
-# Add src to path for imports
-sys.path.append(os.path.join(os.path.dirname(__file__), 'src'))
-
-from src.user import UserStore
-from src.product import ProductStore
-from src.csv_loader import CSVLoader
+# Import from current directory since we're now inside src
+from user import UserStore
+from product import ProductStore
+from csv_loader import CSVLoader
 
 
 class SystemMetrics:
@@ -49,7 +47,7 @@ class SystemMetrics:
     
     def get_file_sizes(self):
         """Get sizes of data files"""
-        files = ['data/users.csv', 'data/products.csv', 'data/purchase_history.csv', 'data/preferences.csv']
+        files = ['../data/users.csv', '../data/products.csv', '../data/purchase_history.csv', '../data/preferences.csv']
         file_sizes = {}
         total_size = 0
         
@@ -141,10 +139,10 @@ class CRUDOperations:
         """Load existing data from CSV files"""
         self.metrics.start_operation("load_data")
         try:
-            CSVLoader.load_users("data/users.csv", self.users)
-            CSVLoader.load_products("data/products.csv", self.products)
-            CSVLoader.load_purchases("data/purchase_history.csv", self.users, self.products)
-            CSVLoader.load_preferences("data/preferences.csv", self.users)
+            CSVLoader.load_users("../data/users.csv", self.users)
+            CSVLoader.load_products("../data/products.csv", self.products)
+            CSVLoader.load_purchases("../data/purchase_history.csv", self.users, self.products)
+            CSVLoader.load_preferences("../data/preferences.csv", self.users)
             load_time = self.metrics.end_operation("load_data")
             print(f"Existing data loaded successfully!")
             self.metrics.print_operation_metrics("data_loading", load_time)
@@ -414,7 +412,7 @@ class CRUDOperations:
     
     def save_users(self):
         """Save users to CSV"""
-        with open('data/users.csv', 'w', newline='', encoding='utf-8') as f:
+        with open('../data/users.csv', 'w', newline='', encoding='utf-8') as f:
             fieldnames = ['Customer Id', 'First Name', 'Last Name', 'Company', 'City', 'Country', 
                          'Email', 'Subscription Date', 'Website']
             writer = csv.DictWriter(f, fieldnames=fieldnames)
@@ -436,7 +434,7 @@ class CRUDOperations:
     
     def save_products(self):
         """Save products to CSV"""
-        with open('data/products.csv', 'w', newline='', encoding='utf-8') as f:
+        with open('../data/products.csv', 'w', newline='', encoding='utf-8') as f:
             fieldnames = ['Index', 'Name', 'Description', 'Brand', 'Category', 'Price', 'Currency', 
                          'Stock', 'EAN', 'Color', 'Size', 'Availability', 'Internal ID']
             writer = csv.DictWriter(f, fieldnames=fieldnames)
@@ -462,7 +460,7 @@ class CRUDOperations:
     
     def save_purchases(self):
         """Save purchases to CSV"""
-        with open('data/purchase_history.csv', 'w', newline='', encoding='utf-8') as f:
+        with open('../data/purchase_history.csv', 'w', newline='', encoding='utf-8') as f:
             fieldnames = ['Purchase_ID', 'Customer_Id', 'Product_ID', 'Product_Name', 'Product_Category',
                          'Purchase_Date', 'Quantity', 'Unit_Price', 'Total_Amount', 'Payment_Method', 'Order_Status']
             writer = csv.DictWriter(f, fieldnames=fieldnames)
@@ -489,7 +487,7 @@ class CRUDOperations:
     
     def save_preferences(self):
         """Save preferences to CSV"""
-        with open('data/preferences.csv', 'w', newline='', encoding='utf-8') as f:
+        with open('../data/preferences.csv', 'w', newline='', encoding='utf-8') as f:
             fieldnames = ['Customer_Id', 'Favorite_Category_1', 'Favorite_Category_2', 'Favorite_Category_3',
                          'Average_Spending', 'Total_Purchases', 'Preferred_Payment_Method', 
                          'Last_Purchase_Date', 'Customer_Segment']

@@ -1,6 +1,6 @@
 from collections import defaultdict
 from typing import Dict, List, Any, Optional
-from src.linked_list import LinkedPurchaseHistory
+from linked_list import LinkedPurchaseHistory
 
 
 class User:

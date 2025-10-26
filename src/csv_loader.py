@@ -1,7 +1,7 @@
 import csv
 from typing import Dict, Any
-from src.user import UserStore
-from src.product import ProductStore
+from user import UserStore
+from product import ProductStore
 
 
 class CSVLoader:
